@@ -1,56 +1,48 @@
 package test;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/api/orders")
+@WebServlet("api/orders")
 public class HelloServlet extends HttpServlet {
-    private static long serialVersionUID = 1L;
+
+    Bank bank = new Bank();
 
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response)
             throws ServletException, IOException {
 
-        response.getWriter().print("Hello!");
+        request.getParameter("id");
+        Long id = Long.valueOf(request.getParameter("id"));
+        Order order = Bank.orderHash.get(id);
+
+        String json = new ObjectMapper().writeValueAsString(order);
+
+        response.setHeader("Content-Type", "application/json");
+        response.getWriter().print(json);
+
     }
 
+
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
 
         String string = Util.asString(req.getInputStream());
-        System.out.println(string);
+        Order post = new ObjectMapper().readValue(string, Order.class);
 
-        String[] temporaryArrayString = string.replace(",", ":")
-                .replace("}", "")
-                .replaceAll("\\s+", "")
-                .replace("{", "")
-                .split(":");
-
-        ArrayList<String> splitted = new ArrayList<String>(Arrays.asList(temporaryArrayString));
-
-        System.out.println("SPLITTED LIST " + splitted);
-
-        if (splitted.contains("\"id\"")) {
-            System.out.println("YES");
-            System.out.println(splitted.size());
-            splitted.remove(0);
-            splitted.remove(0);
-        }
-
-        String toReturn = String.format("{ \"id\": %s, %s: %s }", serialVersionUID, splitted.get(0), splitted.get(1));
-        serialVersionUID++;
-
-        System.out.println(toReturn);
+        bank.bankAdd(post);
+        String json = new ObjectMapper().writeValueAsString(post);
 
         resp.setHeader("Content-Type", "application/json");
-        resp.getWriter().print(toReturn);
+        resp.getWriter().print(json);
 
     }
 }
