@@ -25,6 +25,7 @@ public class HelloServlet extends HttpServlet {
         String json = new ObjectMapper().writeValueAsString(order);
 
         response.setHeader("Content-Type", "application/json");
+
         response.getWriter().print(json);
 
     }
