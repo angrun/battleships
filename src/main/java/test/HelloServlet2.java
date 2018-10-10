@@ -27,6 +27,7 @@ public class HelloServlet2 extends HttpServlet {
 
         String string = Util.asString(req.getInputStream());
         System.out.println(string);
+        System.out.println(string);
         String[] to_Json = string.split("=");
         System.out.println(Arrays.toString(to_Json));
         Order order = new Order();

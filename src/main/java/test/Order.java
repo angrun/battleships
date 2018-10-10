@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Order {
 
-    private static Long id;
+    private Long id;
     private String orderNumber;
     private List<OrderRow> orderRows;
 
