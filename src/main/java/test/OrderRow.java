@@ -26,6 +26,18 @@ public class OrderRow {
         return price;
     }
 
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "OrderRow{" +

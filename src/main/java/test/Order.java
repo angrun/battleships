@@ -34,6 +34,10 @@ public class Order {
         return orderRows;
     }
 
+    public void setOrderRows(List<OrderRow> orderRows) {
+        this.orderRows = orderRows;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
