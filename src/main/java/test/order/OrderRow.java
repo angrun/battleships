@@ -1,4 +1,4 @@
-package test;
+package test.order;
 
 public class OrderRow {
     private String itemName;

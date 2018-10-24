@@ -1,4 +1,8 @@
-package test;
+package test.dao;
+
+import test.order.Order;
+import test.order.OrderRow;
+import test.ServletDataSource;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -9,6 +13,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
+
 
 public class OrdersDao {
 
@@ -42,7 +48,7 @@ public class OrdersDao {
             e.printStackTrace();
         }
 
-        return ordersList.isEmpty() ? null : ordersList;
+        return ordersList;
 
     }
 
@@ -119,6 +125,29 @@ public class OrdersDao {
         }
     }
 
+
+    public void deleteAllTable() {
+
+        String sqlDelete = "DELETE FROM orders";
+        String sqlDelete2 = "DELETE FROM ordersRows";
+
+        try (Connection conn = db.getConnection()) {
+
+            PreparedStatement smtm = conn.prepareStatement(sqlDelete);
+            smtm.executeUpdate();
+
+            smtm = conn.prepareStatement(sqlDelete2);
+            smtm.executeUpdate();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
     public Order insertOrder(Order order) {
 //        System.out.println("I GET THIS OBJECT " + order);
 
@@ -159,5 +188,9 @@ public class OrdersDao {
         return order;
 
     }
+
+
+
+
 }
 
