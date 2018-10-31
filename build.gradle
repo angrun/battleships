@@ -1,31 +1,56 @@
 plugins {
-    id 'war'
     id 'org.gretty' version '2.2.0'
+    id 'war'
 }
 
 repositories {
     jcenter()
-    mavenCentral()
 }
 
 sourceCompatibility = 8
 
+def springVersion = '5.1.0.RELEASE'
+
 dependencies {
-    compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.9.6'
-    compile 'org.json:json:20171018'
-    compile 'com.owlike:genson:1.3'
-    compile 'org.glassfish.jersey.core:jersey-client:2.27'
-    compile group: 'commons-dbcp',
-            name: 'commons-dbcp',
-            version: '1.4'
+
+    compile group: 'org.springframework',
+            name: 'spring-webmvc',
+            version: springVersion
+
+    compile group: 'org.springframework',
+            name: 'spring-jdbc',
+            version: springVersion
+
     compile group: 'org.hsqldb',
             name: 'hsqldb',
             version: '2.4.1'
 
+    compile group: 'org.hibernate',
+            name: 'hibernate-validator',
+            version: '6.0.2.Final'
 
+    compile group: 'com.fasterxml.jackson.core',
+            name: 'jackson-databind',
+            version: '2.9.6'
+
+    compile group: 'org.apache.logging.log4j',
+            name: 'log4j-api',
+            version: '2.11.1'
+
+    compile group: 'org.apache.logging.log4j',
+            name: 'log4j-core',
+            version: '2.11.1'
+
+    compileOnly group: 'org.projectlombok',
+            name: 'lombok',
+            version: '1.18.2'
+
+    annotationProcessor group: 'org.projectlombok',
+            name: 'lombok',
+            version: '1.18.2'
 }
 
 gretty {
     contextPath = '/'
+    servletContainer = 'jetty9.4'
 }
