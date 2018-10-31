@@ -12,6 +12,17 @@ sourceCompatibility = 8
 def springVersion = '5.1.0.RELEASE'
 
 dependencies {
+    compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.9.6'
+    compileOnly 'org.projectlombok:lombok:1.18.2'
+    annotationProcessor 'org.projectlombok:lombok:1.18.2'
+    compile group: 'commons-dbcp',
+            name: 'commons-dbcp',
+            version: '1.4'
+
+    compile group: 'org.hsqldb',
+            name: 'hsqldb',
+            version: '2.4.1'
 
     compile group: 'org.springframework',
             name: 'spring-webmvc',
@@ -21,33 +32,9 @@ dependencies {
             name: 'spring-jdbc',
             version: springVersion
 
-    compile group: 'org.hsqldb',
-            name: 'hsqldb',
-            version: '2.4.1'
-
     compile group: 'org.hibernate',
             name: 'hibernate-validator',
             version: '6.0.2.Final'
-
-    compile group: 'com.fasterxml.jackson.core',
-            name: 'jackson-databind',
-            version: '2.9.6'
-
-    compile group: 'org.apache.logging.log4j',
-            name: 'log4j-api',
-            version: '2.11.1'
-
-    compile group: 'org.apache.logging.log4j',
-            name: 'log4j-core',
-            version: '2.11.1'
-
-    compileOnly group: 'org.projectlombok',
-            name: 'lombok',
-            version: '1.18.2'
-
-    annotationProcessor group: 'org.projectlombok',
-            name: 'lombok',
-            version: '1.18.2'
 }
 
 gretty {

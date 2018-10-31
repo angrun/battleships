@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="et">
+<head>
+    <meta charset="utf-8">
+    <title>exmvc</title>
+
+    <style type="text/css">
+        .ng-cloak { display: none }
+    </style>
+</head>
+
+<body class="ng-cloak" ng-app="app" ng-controller="PostCtrl as vm">
+
+    <div ng-repeat="error in vm.errors" style="background-color: red">
+        {{ error }}<br />
+    </div>
+
+    <label for="title">Pealkiri</label>
+    <input id="title" ng-model="vm.newPost.title"><br>
+
+    <label for="text">Text</label>
+    <input id="text" ng-model="vm.newPost.text"><br>
+
+    <button ng-click="vm.insertNew()">Lisa uus</button>
+
+    <br><br><br>
+
+    <div ng-repeat="post in vm.posts">
+        {{ post.title }}, {{ post.text }} <a href ng-click="vm.deletePost(post.id)">X</a>
+    </div>
+
+</body>
+
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script src="app/app.js"></script>
+<script src="app/http.srv.js"></script>
+<script src="app/message.srv.js"></script>
+<script src="app/post.ctrl.js"></script>
+
+</html>
