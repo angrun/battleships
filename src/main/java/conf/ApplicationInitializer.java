@@ -15,6 +15,7 @@ public class ApplicationInitializer extends
         return new Class[] { MvcConfig.class };
     }
 
+
     @Override
     protected String[] getServletMappings() {
         return new String[] { "/api/*" };
