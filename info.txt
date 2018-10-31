@@ -1,0 +1,49 @@
+
+@ComponentScan(basePackages = {"controller", "dao"})
+- Mis pakettidest spring komponente otsib.
+
+@Import(JpaConfig.class)
+- Viide lisa konfiguratsioonile.
+
+@PropertySource("classpath:/application.properties")
+- Laadida muutujad välisest failist.
+
+@Autowired public Environment env;
+- Süstida sõltuvus, kust saab küsida välisest failist loetud muutujaid.
+
+env.getProperty("var1")
+- Välisest failis laetud muutuja lugemine.
+
+@RestController
+- See komponent hakkab vastu võtma http päringuid vastavalt edasistele mapping-utele.
+
+@PostMapping("/posts")
+- Ütleb Spring Mvc-le, et kui tuleb POST päring aadressile "/posts", siis käivitada see meetod.
+
+@RequestBody
+- Ütleb, et järgnevasse parameetrisse tuleks päringust tulnud Json map-ida.
+
+@Valid
+- Ütleb, et antud päringust tulnud infot tuleb valideerida vastavalt JSR303 annotatsioonidele.
+
+@PathVariable("personId") Long personId
+- Ütleb Spring Mvc-le, et päringus olev parameeter personId tuleb panna muutujasse
+
+@ControllerAdvice
+- Selles komponendis on meetodid, mis kehtivad kõigi kontrollerite koha.
+
+@ResponseStatus(value = HttpStatus.BAD_REQUEST)
+- Http päringu vastuse koodiks on 400.
+
+@ExceptionHandler
+- Sellega märgistatud meetod on vigade püüdmiseks.
+
+@ResponseBody
+- Meetodi poolt tagastatu tuleb kliendile saata.
+  Rakendustes, mis genereerivad html-i on teistsugune käitumine.
+
+@PostConstruct
+- Ütleb, et pärast konkreetse objekti loomist tuleb märgistatud meetod käivitada.
+
+@Primary
+- Ütleb, et kui on mitu sama tüüpi klassi, siis eelista seda

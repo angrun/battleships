@@ -1,3 +1,5 @@
+
+
 package model;
 
 import lombok.AllArgsConstructor;
@@ -6,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.Valid;
 import java.util.List;
+
 
 @Data
 @NoArgsConstructor
@@ -18,3 +21,4 @@ public class Post {
     @Valid
     public List<PostRow> orderRows;
 }
+

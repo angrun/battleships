@@ -3,7 +3,6 @@ package controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dao.PostDao;
-import model.Anya;
 import model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -48,13 +47,13 @@ public class PostController {
 
     }
 
-    @PostMapping("test")
-    public String getPost(@RequestBody Post post) throws JsonProcessingException {
-        return new ObjectMapper().writeValueAsString(post);
-    }
-    @GetMapping("test")
-    public Anya getPostw()  {
-        return new Anya();
-    }
+//    @PostMapping("test")
+//    public String getPost(@RequestBody Post post) throws JsonProcessingException {
+//        return new ObjectMapper().writeValueAsString(post);
+//    }
+//    @GetMapping("test")
+//    public Anya getPostw()  {
+//        return new Anya();
+//    }
 
 }
