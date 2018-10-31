@@ -16,6 +16,7 @@ public class ApplicationInitializer extends
     }
 
 
+
     @Override
     protected String[] getServletMappings() {
         return new String[] { "/api/*" };
