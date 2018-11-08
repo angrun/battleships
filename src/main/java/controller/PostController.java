@@ -1,8 +1,6 @@
 package controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import dao.PostDao;
+import dao.PostHsqlDao;
 import model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,7 +17,7 @@ import java.util.List;
 public class PostController {
 
     @Autowired
-    private PostDao dao;
+    private PostHsqlDao dao;
 
     //GET
     @GetMapping("orders") //GET
@@ -27,7 +25,7 @@ public class PostController {
         return dao.findAll();
     }
 
-    //GET BY ID
+//    GET BY ID
     @GetMapping("orders/{postId}") //GET
     public Post getById(@PathVariable("postId") Long postId) {
         return dao.findById(postId);
@@ -47,13 +45,5 @@ public class PostController {
 
     }
 
-//    @PostMapping("test")
-//    public String getPost(@RequestBody Post post) throws JsonProcessingException {
-//        return new ObjectMapper().writeValueAsString(post);
-//    }
-//    @GetMapping("test")
-//    public Anya getPostw()  {
-//        return new Anya();
-//    }
 
 }
