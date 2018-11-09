@@ -1,26 +1,18 @@
 package dao;
 
 import model.Post;
-import model.PostRow;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.swing.text.html.parser.Entity;
 import javax.transaction.Transactional;
-import java.sql.PreparedStatement;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class PostHsqlDao {
 
-    @Autowired
-    private JdbcTemplate template;
 
     @PersistenceContext
     public EntityManager em;
@@ -34,7 +26,6 @@ public class PostHsqlDao {
     }
 
     public List<Post> findAll() {
-        //TODO
 
         return em.createQuery("select p from Post p", Post.class).getResultList();
     }
@@ -48,12 +39,20 @@ public class PostHsqlDao {
         return query.getSingleResult();
 
     }
-//
-    public void delete(Long id) {
-        //DONE
 
-        TypedQuery<Post> query =
-                em.createQuery("delete p from Post p", Post.class);
+    @Transactional
+    public void delete(Long id) {
+
+        em.remove(em.find(Post.class, id));
+        //em.remove(findById(id);
+
+    }
+
+    @Transactional
+    public void delete() {
+
+        Query query = em.createQuery("delete from Post");
+        query.executeUpdate();
 
     }
 

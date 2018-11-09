@@ -40,8 +40,14 @@ public class PostController {
 
     //DELETE
     @DeleteMapping("orders/{postId}")
-    public void deletePost(@PathVariable("postId") Long postId) {
+    public void deleteById(@PathVariable("postId") Long postId) {
         dao.delete(postId);
+
+    }
+    //DELETE
+    @DeleteMapping("orders")
+    public void delete() {
+        dao.delete();
 
     }
 
